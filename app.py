@@ -9,7 +9,7 @@ import prompts
 import pinecone
 
 import os
-cmd = 'sudo apt install ffmpeg'
+cmd = 'apt install ffmpeg'
 os.system(cmd)
 from elevenlabs import generate, play, set_api_key, save
 set_api_key(st.secrets["elevenlabs_api"])
