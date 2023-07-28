@@ -1,6 +1,7 @@
 import os
 import openai
 import streamlit as st
+import ffmpeg
 from dotenv import load_dotenv
 from render import bot_msg_container_html_template, user_msg_container_html_template
 from utils import semantic_search
