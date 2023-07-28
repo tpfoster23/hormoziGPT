@@ -7,6 +7,12 @@ from utils import semantic_search
 import prompts
 import pinecone
 
+from elevenlabs import generate, play, set_api_key, save
+set_api_key(st.secrets["elevenlabs_api"])
+
+def get_voice(text):
+    play(generate(text=text, voice="Hormozi"))
+
 
 # Set up OpenAI API key
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -63,6 +69,8 @@ def generate_response():
 
     # Parse response
     bot_response = response["choices"][0]["message"]["content"]
+    get_voice(bot_response)
+    
     st.session_state.history.append({
         "message": bot_response,
         "is_user": False
@@ -81,3 +89,7 @@ for message in st.session_state.history:
         st.write(user_msg_container_html_template.replace("$MSG", message["message"]), unsafe_allow_html=True)
     else:
         st.write(bot_msg_container_html_template.replace("$MSG", message["message"]), unsafe_allow_html=True)
+
+
+
+
